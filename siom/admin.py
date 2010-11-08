@@ -1,3 +1,5 @@
+# vim:set ts=4 sw=4 noexpandtab:
+
 from django.contrib import admin
 from siom.models import *
 

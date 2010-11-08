@@ -1,3 +1,5 @@
+# vim:set ts=4 sw=4 noexpandtab:
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,6 +15,7 @@ class Task(models.Model):
 class Course(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	name = models.CharField(max_length=255)
+	users = models.ManyToManyField(User, related_name='courses')
 
 class Entry(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})

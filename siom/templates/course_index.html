@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Šeštadieninė informatikos olimpiadininkų mokykla{% endblock %}
+
+{% block content %}
+<ul>
+    {% for course in course_list %}
+    <li>{{ course.name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

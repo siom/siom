@@ -11,11 +11,15 @@ class Task(models.Model):
 	input = models.CharField(max_length=255, blank=True)
 	output = models.CharField(max_length=255, blank=True)
 	text = models.TextField()
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 
 class Course(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	name = models.CharField(max_length=255)
 	users = models.ManyToManyField(User, related_name='courses')
+	code = models.CharField(max_length=50, unique=True) # short identifier, used in URLs
+	open = models.BooleanField() # this course is open (visible) to users
 
 class Entry(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
@@ -26,7 +30,7 @@ class Entry(models.Model):
 	text = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
-	publish = models.DateTimeField(null=True, blank=True)
+	publish = models.DateTimeField(null=True, blank=True) # when entry was/will be published
 
 class Submission(models.Model):
 	LANGUAGES = [('cpp', 'C++'), ('c', 'C'), ('pascal', 'Pascal')]

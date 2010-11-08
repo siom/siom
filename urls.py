@@ -1,3 +1,5 @@
+# vim:set ts=4 sw=4 noexpandtab:
+
 from django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:
@@ -13,4 +15,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+	(r'', include('siom.urls')),
 )

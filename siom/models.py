@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Task(models.Model):
 	code = models.CharField(max_length=255, unique=True)
 	title = models.CharField(max_length=255)
-	timeLimitMS = models.IntegerField()
-	memoryLimitMB = models.IntegerField()
+	time_limit_ms = models.IntegerField()
+	memory_limit_mb = models.IntegerField()
 	input = models.CharField(max_length=255, blank=True)
 	output = models.CharField(max_length=255, blank=True)
 	text = models.TextField()
@@ -17,14 +17,14 @@ class Task(models.Model):
 class Course(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	name = models.CharField(max_length=255)
-	users = models.ManyToManyField(User, related_name='courses')
+	users = models.ManyToManyField(User, related_name='courses', blank=True)
 	code = models.CharField(max_length=50, unique=True) # short identifier, used in URLs
 	open = models.BooleanField() # this course is open (visible) to users
 
 class Entry(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	courses = models.ManyToManyField(Course, related_name='entries')
-	tasks = models.ManyToManyField(Task, related_name='entries')
+	tasks = models.ManyToManyField(Task, related_name='entries', blank=True)
 	type = models.CharField(max_length=255, db_index=True)
 	title = models.CharField(max_length=255)
 	text = models.TextField()

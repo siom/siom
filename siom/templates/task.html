@@ -1,0 +1,10 @@
+{# encoding: utf-8 #}
+{% extends "course_base.html" %}
+{% load markup %}
+
+{% block title %}{{ block.super }} &mdash; {{ task.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ task.title }}</h2>
+{{ task.text|textile }}
+{% endblock %}

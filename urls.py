@@ -1,5 +1,7 @@
 # vim:set ts=4 sw=4 noexpandtab:
 
+import django.views.static
+from django.conf import settings
 from django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:
@@ -14,6 +16,7 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
-	(r'', include('siom.urls')),
+    (r'^a/', include(admin.site.urls)),
+    (r'^m/(?P<path>.*)$', django.views.static.serve, { 'document_root': settings.MEDIA_ROOT }),
+    (r'', include('siom.urls')),
 )

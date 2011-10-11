@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 
 class Task(models.Model):
 	code = models.CharField(max_length=255, unique=True)
@@ -13,13 +14,19 @@ class Task(models.Model):
 	text = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
+	
+	def __unicode__(self):
+		return '{0.title} ({0.code})'.format(self)
 
 class Course(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	name = models.CharField(max_length=255)
 	users = models.ManyToManyField(User, related_name='courses', blank=True)
-	code = models.CharField(max_length=50, unique=True) # short identifier, used in URLs
+	code = models.CharField(max_length=50, unique=True, validators=[MinLengthValidator(2)]) # short identifier, used in URLs
 	open = models.BooleanField() # this course is open (visible) to users
+	
+	def __unicode__(self):
+		return '{0.name} ({0.code})'.format(self)
 
 class Entry(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
@@ -31,6 +38,12 @@ class Entry(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
 	publish = models.DateTimeField(null=True, blank=True) # when entry was/will be published
+	
+	def __unicode__(self):
+		return '{0.title} on {1}'.format(self, ', '.join([c.name for c in self.courses.all()]))
+	
+	class Meta:
+		verbose_name_plural = 'entries'
 
 class Submission(models.Model):
 	LANGUAGES = [('cpp', 'C++'), ('c', 'C'), ('pascal', 'Pascal')]
@@ -39,5 +52,6 @@ class Submission(models.Model):
 	code = models.TextField()
 	language = models.CharField(max_length=16, choices=LANGUAGES)
 	verdict = models.NullBooleanField()
+	score = models.FloatField(null=True, blank=True)
 	message = models.TextField()
 	submitted = models.DateTimeField(auto_now_add=True)

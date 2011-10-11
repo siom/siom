@@ -1,0 +1,23 @@
+{# encoding: utf-8 #}
+{% extends "course_base.html" %}
+
+{% block title %}ŠIOM &mdash; submission {{ submission.id }}{% endblock %}
+
+{% block content %}
+<ul class="submissions">
+	{% for sub in all_submissions %}<li>
+		<a href="{% url siom.views.submission course.code sub.id %}"{% if sub == submission %} class="active"{% endif %}>
+			[{{ forloop.counter }}]
+			{{ sub.submitted|date }}</a>
+		({{ sub.score|floatformat|default:"?" }}) {# TODO: multiply 100 #}
+	</li>{% endfor %}
+</ul>
+{% if submission.verdict == None %}
+	<p>Laukiam</p>
+{% else %}
+	<p>Taškai: {{ submission.score }}</p>
+	{{ submission.message|safe }}
+{% endif %}
+<hr>
+<pre>{{ submission.code }}</pre>
+{% endblock %}

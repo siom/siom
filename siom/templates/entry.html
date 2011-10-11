@@ -1,0 +1,8 @@
+{# encoding: utf-8 #}
+{% extends "course_base.html" %}
+
+{% block title %}{{ block.super }} &mdash; {{ entry.title }}{% endblock %}
+
+{% block content %}
+{% include "entry_inc.html" %}
+{% endblock %}

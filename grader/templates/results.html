@@ -1,0 +1,6 @@
+<table>
+<tr><th>nr.</th><th>result</th><th>time</th></tr>
+{% for r, t in tests %}
+<tr><td>{{ forloop.counter }}</td><td>{{ r }}</td><td>{{ t }} s</td></tr>
+{% endfor %}
+</table>

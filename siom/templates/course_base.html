@@ -1,0 +1,17 @@
+{# encoding: utf-8 #}
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} &mdash; {{ course.name }}{% endblock %}
+
+{% block logourl %}{% url siom.views.course_home course.code %}{% endblock %}
+
+{% block header %}
+{{ block.super }}
+<h2>{{ course.name }}</h2>
+{% endblock %}
+
+{% block menubar %}
+<div class="menuitem"><a href="{% url siom.views.course_home course.code %}">Pradžia</a></div>
+<div class="menuitem"><a href="{% url siom.views.submit course.code %}">Pateikti sprendimą</a></div>
+{% block login %}{{ block.super }}{% endblock %}
+{% endblock %}

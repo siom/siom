@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from siom.models import *
+from grader.tasks import GradeTask
 
 class TaskAdmin(admin.ModelAdmin):
 	fieldsets = [
@@ -16,8 +17,17 @@ class TaskAdmin(admin.ModelAdmin):
 			'classes': ['collapse'],
 		}),
 	]
+	
+class SubmissionAdmin(admin.ModelAdmin):
+	actions = ['regrade_submissions']
+	
+	def regrade_submissions(modeladmin, request, queryset):
+		for submission in queryset:
+			GradeTask.delay(submission.id)
+
 
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Course)
 admin.site.register(Entry)
-admin.site.register(Submission)
+admin.site.register(Submission, SubmissionAdmin)
+

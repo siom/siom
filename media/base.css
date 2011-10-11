@@ -1,0 +1,18 @@
+
+#header .logo {
+	float: left;
+}
+
+#menu {
+	clear: both;
+	border-top: thin black dashed;
+	border-bottom: thin black dashed;
+}
+
+#menu .menuitem {
+	display: inline-block;
+}
+
+#menu .menuitem+.menuitem:before {
+	content: " | ";
+}

@@ -1,0 +1,22 @@
+{# encoding: utf-8 #}
+{% load markup %}
+{% load stats %}
+
+<h3><a href="{% url siom.views.entry course.code entry.id %}">{{ entry.title }}</a></h3>
+{{ entry.text|textile }}
+
+{% with tasks=entry.tasks.all %}{% if tasks %}
+
+	<p>Užduotys:</p>
+	<ul>
+		{% for task in tasks %}
+			<li><a href="{% url siom.views.task course.code task.code %}">{{ task.title }}</a></li>
+		{% endfor %}
+	</ul>
+	
+	{% if not short %}
+		<p>Rezultatai:</p>
+		{% results_table tasks %}
+	{% endif %}
+
+{% endif %}{% endwith %}

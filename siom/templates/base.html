@@ -1,14 +1,32 @@
+{# encoding: utf-8 #}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 
 <html>
 <head>
-    <title>{% block title %}{% endblock %}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{% block title %}ŠIOM{% endblock %}</title>
+	<link href="{{ MEDIA_URL }}base.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+	<div id="header">	{% block header %}
+		<a href="{% block logourl %}{% url siom.views.course_index %}{% endblock %}">
+		<img class="logo" src="{{ MEDIA_URL }}vilkas.png" width="133px" height="100px" /></a>
+		<h1>Šeštadieninė informatikos olimpiadininkų mokykla</h1>
+	{% endblock %}</div>
+	<div id="menu">{% block menubar %}
+		{% block login %}<div class="menuitem">
+			{% if user.is_authenticated %}
+				{{ user.first_name }} {{ user.last_name }}
+				<a href="#">Nustatymai</a>
+				<a href="{% url django.contrib.auth.views.logout %}?next={{ request.path }}">Atsijungti</a>
+			{% else %}
+				<a href="{% url django.contrib.auth.views.login %}?next={{ request.path }}">Prisijungti</a>
+			{% endif %}
+		</div>{% endblock %}
+	{% endblock %}</div>
+	<div id="content">{% block content %}
+	{% endblock %}</div>
 </body>
 </html>

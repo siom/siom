@@ -5,7 +5,7 @@
 
 {% block logourl %}{% url siom.views.course_home course.code %}{% endblock %}
 {% block loginurl %}{% url siom.views.course_login course.code %}?next={{ request.path }}{% endblock %}
-
+{% block logouturl %}{% if not course.open %}{% url siom.views.course_index %}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block header %}
 {{ block.super }}
 <h2>{{ course.name }}</h2>

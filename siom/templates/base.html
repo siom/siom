@@ -19,10 +19,10 @@
 		{% block login %}<div class="menuitem">
 			{% if user.is_authenticated %}
 				{{ user.first_name }} {{ user.last_name }}
-				<a href="#">Nustatymai</a>
+				{#<a href="#">Nustatymai</a>#}
 				<a href="{% url django.contrib.auth.views.logout %}?next={{ request.path }}">Atsijungti</a>
 			{% else %}
-				<a href="{% url django.contrib.auth.views.login %}?next={{ request.path }}">Prisijungti</a>
+				<a href="{% block loginurl %}{% url django.contrib.auth.views.login %}?next={{ request.path }}{% endblock %}">Prisijungti</a>
 			{% endif %}
 		</div>{% endblock %}
 	{% endblock %}</div>

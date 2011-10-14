@@ -3,9 +3,7 @@
 
 {% block content %}
 	{% for entry in entries %}
-		{% with "true" as short %}
-			{% include "entry_inc.html" %}
-		{% endwith %}
+		{% include "entry_inc.html" with short="true" %}
 		{% if not forloop.last %}<hr>{% endif %}
 	{% endfor %}
 {% endblock %}

@@ -16,7 +16,7 @@ class Task(models.Model):
 	modified = models.DateTimeField(auto_now=True)
 	
 	def __unicode__(self):
-		return '{0.title} ({0.code})'.format(self)
+		return u'{0.title} ({0.code})'.format(self)
 
 class Course(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
@@ -26,7 +26,7 @@ class Course(models.Model):
 	open = models.BooleanField() # this course is open (visible) to users
 	
 	def __unicode__(self):
-		return '{0.name} ({0.code})'.format(self)
+		return u'{0.name} ({0.code})'.format(self)
 
 class Entry(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
@@ -40,7 +40,7 @@ class Entry(models.Model):
 	publish = models.DateTimeField(null=True, blank=True) # when entry was/will be published
 	
 	def __unicode__(self):
-		return '{0.title} on {1}'.format(self, ', '.join([c.name for c in self.courses.all()]))
+		return u'{0.title} on {1}'.format(self, ', '.join([c.name for c in self.courses.all()]))
 	
 	class Meta:
 		verbose_name_plural = 'entries'

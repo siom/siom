@@ -2,8 +2,10 @@
 {% extends "course_base.html" %}
 
 {% block content %}
-  {% for entry in entries %}
-    {% include "entry_inc.html" with short="true" %}
-    {% if not forloop.last %}<hr>{% endif %}
-  {% endfor %}
+	{% for entry in entries %}
+		{% with short="true" %}
+			{% include "entry_inc.html" %}
+		{% endwith %}
+		{% if not forloop.last %}<hr>{% endif %}
+	{% endfor %}
 {% endblock %}

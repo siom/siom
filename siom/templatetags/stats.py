@@ -5,7 +5,24 @@ from siom.models import Submission
 
 register = template.Library()
 
-@register.simple_tag(takes_context=True)
+@register.tag(name="results_table")
+def do_results_table(parser, token):
+	try:
+		tag_name, tasks_var = token.split_contents()
+	except ValueError:
+		raise template.TemplateSyntaxError("%r tag requires exactly one argument" % token.contents.split()[0])
+	return ResultsTableNode(tasks_var)
+
+class ResultsTableNode(template.Node):
+	def __init__(self, tasks_var):
+		self.tasks_var = template.Variable(tasks_var)
+	def render(self, context):
+		try:
+			tasks = self.tasks_var.resolve(context)
+			return results_table(context, tasks)
+		except template.VariableDoesNotExist:
+			return ''
+
 def results_table(context, tasks):
 	course = context['course']
 	if not isinstance(tasks, list):

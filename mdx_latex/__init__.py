@@ -71,6 +71,9 @@ class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
     and can not be parsed in block mode very sanely."""
     def _latex_to_base64(self, tex, math_mode):
         """Generates a base64 representation of TeX string"""
+        cwd = os.getcwd()
+        os.chdir('latex_tmp')
+
         # Generate the temporary file
         tempfile.tempdir = ""
         path = tempfile.mktemp()
@@ -118,6 +121,8 @@ class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
         png.close()
 
         self._cleanup(path)
+
+        os.chdir(cwd)
 
         return data
 

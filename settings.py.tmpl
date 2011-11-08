@@ -129,3 +129,17 @@ BROKER_VHOST = "/"
 
 DJKOMBU_POLLING_INTERVAL = 1
 
+GRADER_BASE_DIR = ''
+GRADER_TASK_DIR = os.path.join(GRADER_BASE_DIR, 'tasks')
+GRADER_SYS_DIR = os.path.join(GRADER_BASE_DIR, 'sys')
+GRADER_RUN_DIR = os.path.join(GRADER_BASE_DIR, 'run')
+GRADER_COMPILE_ARGS = {
+	'pascal': 'fpc -Ci -g -O2 -Sg -o"{executable}" "{filename}"',
+	'c': 'gcc -std=gnu99 -O2 -g -o "{executable}" "{filename}" -lm -m32',
+	'cpp': 'g++ -O2 -g -o "{executable}" {filename}" -lm -m32',
+}
+GRADER_FILE_EXT = {
+	'pascal': 'pas',
+	'c': 'c',
+	'cpp': 'cpp',
+}

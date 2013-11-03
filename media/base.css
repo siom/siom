@@ -16,3 +16,82 @@
 #menu .menuitem+.menuitem:before {
 	content: " | ";
 }
+
+ul.submissions li {
+}
+
+ul.submissions li a {
+}
+
+ul.submissions li a.active {
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table td,
+table th {
+	border: 4px solid white;
+}
+
+table th {
+	background-color: #999999;
+}
+
+table tr:nth-of-type(odd) td {
+	background-color: #ffffff;
+}
+
+table tr:nth-of-type(even) td {
+	background-color: #cccccc;
+}
+
+table tr:nth-of-type(odd) td.submission.pass {
+	background-color: #00dd00;
+}
+
+table tr:nth-of-type(even) td.submission.pass {
+	background-color: #00aa00;
+}
+
+td.submission,
+td.submission a {
+	color: #332233;
+}
+
+table.login tr th,
+table.login tr td {
+	background-color: white;
+}
+table.submit tr th,
+table.submit tr td {
+	background-color: white;
+}
+
+.markdown table tr td,
+.markdown table tr th {
+	border: thin solid black;
+	background-color: white;
+	padding: 3px 5px;
+	vertical-align: top;
+}
+
+.markdown table pre {
+	margin: 0;
+}
+
+div.limits {
+	float: right;
+}
+
+div.limits p {
+	font-style: italic;
+	font-size: small;
+	margin: 0;
+}
+
+.nofloat {
+	clear: both;
+}

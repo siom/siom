@@ -1,0 +1,24 @@
+{# encoding: utf-8 #}
+{% extends base_template %}
+{% load url from future %}
+
+{% block content %}
+
+{% if form.errors %}
+{{ form.errors }}
+{% endif %}
+
+<form method="post" action="">
+{% csrf_token %}
+<table class="login">
+{% for field in form %}
+<tr>
+	<td>{{ field.label_tag }}</td>
+	<td>{{ field }} {{ field.errors }}</td>
+</tr>
+{% endfor %}
+</table>
+<input type="submit" value="change pass" />
+</form>
+
+{% endblock %}

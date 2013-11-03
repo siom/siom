@@ -3,7 +3,7 @@
 {% load stats %}
 
 <h3><a href="{% url siom.views.entry course.code entry.id %}">{{ entry.title }}</a></h3>
-{{ entry.text|markdown:"simpletables,latex" }}
+<div class="markdown">{{ entry.text|markdown:"simpletables,latex" }}</div>
 
 {% with tasks=entry.tasks.all %}{% if tasks %}
 

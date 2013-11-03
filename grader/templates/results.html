@@ -1,6 +1,10 @@
+<p>Compile: {{ compile_success|yesno:"OK,FAIL" }}</p>
+<p>{{ compile_msg }}</p>
 <table>
-<tr><th>nr.</th><th>result</th><th>time</th></tr>
-{% for r, t in tests %}
-<tr><td>{{ forloop.counter }}</td><td>{{ r }}</td><td>{{ t }} s</td></tr>
+<thead><tr><th>nr.</th><th>result</th><th>time</th><th>message</th></tr></thead>
+<tbody>
+{% for r, t, m in results %}
+<tr><td>{{ forloop.counter }}</td><td>{{ r }}</td><td>{{ t }} s</td><td>{{ m }}</td></tr>
 {% endfor %}
+</tbody>
 </table>

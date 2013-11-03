@@ -43,6 +43,9 @@ IMG_EXPR = "<img class='latex-inline math-%s' alt='%s' id='%s'" + \
 # Base CSS template
 IMG_CSS = "<style>img.latex-inline { vertical-align: middle; }</style>\n"
 
+# horrible
+CACHE_FILE = '/home/www/siom/web/latex.cache'
+TEMP_DIR = '/home/www/siom/web/latex_tmp'
 
 class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
     # These are our cached expressions that are stored in latex.cache
@@ -60,7 +63,7 @@ class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
 
     def __init__(self, configs):
         try:
-            cache_file = open('latex.cache', 'r+')
+            cache_file = open(CACHE_FILE, 'r+')
             for line in cache_file.readlines():
                 key, val = line.strip("\n").split(" ")
                 self.cached[key] = val
@@ -72,7 +75,7 @@ class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
     def _latex_to_base64(self, tex, math_mode):
         """Generates a base64 representation of TeX string"""
         cwd = os.getcwd()
-        os.chdir('latex_tmp')
+        os.chdir(TEMP_DIR)
 
         # Generate the temporary file
         tempfile.tempdir = ""
@@ -162,19 +165,19 @@ class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
         # Parse the expressions
         new_cache = {}
         for reg, math_mode, expr in tex_expr:
-            simp_expr = filter(unicode.isalnum, expr)
+            simp_expr = filter(lambda s: not s.isspace(), expr)
             if simp_expr in self.cached:
                 data = self.cached[simp_expr]
             else:
                 data = self._latex_to_base64(expr, math_mode)
                 new_cache[simp_expr] = data
             expr = expr.replace('"', "").replace("'", "")
-            page = reg.sub(IMG_EXPR %
+            page = reg.sub((lambda m: IMG_EXPR %
                     (str(math_mode).lower(), simp_expr,
-                        simp_expr[:15], data), page, 1)
+                        simp_expr[:15], data)), page, 1)
 
         # Cache our data
-        cache_file = open('latex.cache', 'a')
+        cache_file = open(CACHE_FILE, 'a')
         for key, value in new_cache.items():
             cache_file.write("%s %s\n" % (key, value))
         cache_file.close()

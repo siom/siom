@@ -21,9 +21,9 @@ def results_table(context, tasks):
 		for task in tasks:
 			subs = user_dict.get(task.id, [])
 			if subs:
-				best = max(subs, key=lambda sub: (sub.verdict, sub.score))
+				best = max(subs, key=lambda sub: (sub.verdict, sub.score, sub.submitted))
 				verdict = best.verdict
-				score = best.score * 100
+				score = best.score * 100 if best.score is not None else None
 			else:
 				best = None
 				verdict = None

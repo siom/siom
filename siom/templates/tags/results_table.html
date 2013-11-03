@@ -1,18 +1,23 @@
 <table class="results">
+	<thead>
 	<tr>
 		<th />
 		{% for task in tasks %}
 			<th>{{ task.title }}</th>
 		{% endfor %}
 	</tr>
+	</thead>
+	<tbody>
 	{% for user, user_submissions in submissions %}<tr>
-		<td class="user">{{ user.first_name }}</td>
-		{% for subs in user_submissions%}<td>
-			<a href="{% url siom.views.submission course.code subs.best.id %}"
-			    class="submission {{ subs.verdict|yesno:'pass,fail,none' }}">
-				{{ subs.score|floatformat }}%
-				({{ subs.count }})
-			</a>
+		<td class="user{% if user.is_staff %} staff{% endif %}">{{ user.first_name }}</td>
+		{% for subs in user_submissions%}<td class="submission {{ subs.verdict|yesno:'pass,fail,none' }}">
+			{% if subs.best %}
+				<a href="{% url siom.views.submission course.code subs.best.id %}">
+					{{ subs.score|floatformat }}%
+					({{ subs.count }})
+				</a>
+			{% else %}-{% endif %}
 		</td>{% endfor %}
 	</tr>{% endfor %}
+	</tbody>
 </table>

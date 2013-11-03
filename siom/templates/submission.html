@@ -1,5 +1,8 @@
 {# encoding: utf-8 #}
+
 {% extends "course_base.html" %}
+
+{% load siomext stylize %}
 
 {% block title %}ŠIOM &mdash; submission {{ submission.id }}{% endblock %}
 
@@ -8,16 +11,18 @@
 	{% for sub in all_submissions %}<li>
 		<a href="{% url siom.views.submission course.code sub.id %}"{% if sub == submission %} class="active"{% endif %}>
 			[{{ forloop.counter }}]
-			{{ sub.submitted|date }}</a>
-		({{ sub.score|floatformat|default:"?" }}) {# TODO: multiply 100 #}
+			{{ sub.submitted|date:"Y-m-d H:i" }}</a>
+		({{ sub.score|multiply:100|floatformat|default:"?" }})
 	</li>{% endfor %}
 </ul>
 {% if submission.verdict == None %}
 	<p>Laukiam</p>
 {% else %}
-	<p>Taškai: {{ submission.score }}</p>
+	<p>Taškai: {{ submission.score|multiply:100|floatformat }}</p>
 	{{ submission.message|safe }}
 {% endif %}
-<hr>
-<pre>{{ submission.code }}</pre>
+{% if show_source %}
+	<hr>
+	{% stylize submission.language %}{{ submission.code|safe }}{% endstylize %}
+{% endif %}
 {% endblock %}

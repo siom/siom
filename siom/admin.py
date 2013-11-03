@@ -19,6 +19,9 @@ class TaskAdmin(admin.ModelAdmin):
 	]
 	
 class SubmissionAdmin(admin.ModelAdmin):
+	list_display = ('task', 'user', 'language', 'verdict', 'score', 'submitted')
+	list_filter = ('task', 'user', 'language', 'verdict')
+
 	actions = ['regrade_submissions']
 	
 	def regrade_submissions(modeladmin, request, queryset):
@@ -27,7 +30,7 @@ class SubmissionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Task, TaskAdmin)
-admin.site.register(Course)
+admin.site.register(Course, filter_horizontal=('users',))
 admin.site.register(Entry)
 admin.site.register(Submission, SubmissionAdmin)
 

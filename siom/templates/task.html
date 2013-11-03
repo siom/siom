@@ -1,10 +1,17 @@
 {# encoding: utf-8 #}
 {% extends "course_base.html" %}
-{% load markup %}
+{% load markup siomext %}
 
 {% block title %}{{ block.super }} &mdash; {{ task.title }}{% endblock %}
 
 {% block content %}
+<div class="limits">
+	<p>Laiko ribojimas: {{ task.time_limit_ms|multiply:0.001|floatformat }}s</p>
+	<p>Atminties ribojimas: {{ task.memory_limit_mb }}MB</p>
+	{% if task.input %}<p>Duomenų failas: {{ task.input }}</p>{% endif %}
+	{% if task.output %}<p>Rezultatų failas: {{ task.output }}</p>{% endif %}
+</div>
 <h2>{{ task.title }}</h2>
-{{ task.text|markdown:"simpletables,latex" }}
+<div class="nofloat"></div>
+<div class="markdown">{{ task.text|markdown:"simpletables,latex" }}</div>
 {% endblock %}

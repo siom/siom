@@ -1,0 +1,13 @@
+{# encoding: utf-8 #}
+<table>
+<tr>
+<th/>
+<th>Išspręsti (iš {{ total }})</th>
+</tr>
+{% for score in scores %}
+<tr>
+<td>{{ score.user.first_name }} {{ score.user.last_name }}</td>
+<td align="right">{{score.score }}</td>
+</tr>
+{% endfor %}
+</table>

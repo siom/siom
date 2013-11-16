@@ -1,14 +1,8 @@
 {# encoding: utf-8 #}
 {% extends "course_base.html" %}
+{% load stats %}
 
 {% block title %}{{ block.super }} &mdash; submit{% endblock %}
-
 {% block content %}
-<form enctype="multipart/form-data" method="post" action="{% url siom.views.submit course.code %}">
-{% csrf_token %}
-<table class="submit">
-{{ form }}
-<tr><td colspan="2"><input type="submit"></td></tr>
-</table>
-</form>
+{% scoreboard_table course %}
 {% endblock %}

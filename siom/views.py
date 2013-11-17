@@ -64,9 +64,12 @@ def submit(request, course):
 
 @course_view
 def scoreboard(request, course):
+	print 'view course:', course
 	if not request.user.is_staff:
 		raise Http404
-	return render_to_response('scoreboard.html')
+	return render_to_response('scoreboard.html', {
+		'course': course,
+	}, RequestContext(request))
 
 @course_view
 def submission(request, course, id):

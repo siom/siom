@@ -5,7 +5,7 @@ Table extension for Python-Markdown
 """
 
 import markdown
-from markdown import etree
+from markdown.util import etree
 
 class TablePattern(markdown.inlinepatterns.Pattern):
 	def __init__ (self, md):

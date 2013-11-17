@@ -9,7 +9,7 @@
 {% block content %}
 <ul class="submissions">
 	{% for sub in all_submissions %}<li>
-		<a href="{% url siom.views.submission course.code sub.id %}"{% if sub == submission %} class="active"{% endif %}>
+		<a href="{% url 'siom.views.submission' course.code sub.id %}"{% if sub == submission %} class="active"{% endif %}>
 			[{{ forloop.counter }}]
 			{{ sub.submitted|date:"Y-m-d H:i" }}</a>
 		({{ sub.score|multiply:100|floatformat|default:"?" }})

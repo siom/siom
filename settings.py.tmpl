@@ -107,7 +107,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'djkombu',
+    'kombu.transport.django',
     'djcelery',
     'south',
     'siom',
@@ -128,7 +128,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.contrib.messages.context_processors.messages",
 )
 
-BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
+BROKER_BACKEND = "kombu.transport.django.Transport"
 #celery
 BROKER_HOST = "localhost"
 BROKER_PORT = 5672

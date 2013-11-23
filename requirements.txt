@@ -1,0 +1,5 @@
+django==1.5.5
+django-celery
+south
+docutils
+django-markdown

@@ -3,3 +3,4 @@ django-celery
 south
 docutils
 django-markdown
+pygments

@@ -4,3 +4,4 @@ south
 docutils
 django-markdown
 pygments
+MySQL-python

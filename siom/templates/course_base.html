@@ -16,9 +16,7 @@
 {% if user.in_course %}
 	<div class="menuitem"><a href="{% url 'siom.views.submit' course.code %}">Pateikti sprendimą</a></div>
 {% endif %}
-{% if user.is_staff %}
-	<div class="menuitem"><a href="{% url 'siom.views.scoreboard' course.code %}">Rezultatai</a></div>
-{% endif %}
+<div class="menuitem"><a href="{% url 'siom.views.scoreboard' course.code %}">Rezultatai</a></div>
 {% block login %}{{ block.super }}{% endblock %}
 {% endblock %}
 

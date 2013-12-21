@@ -44,8 +44,9 @@ IMG_EXPR = "<img class='latex-inline math-%s' alt='%s' id='%s'" + \
 IMG_CSS = "<style>img.latex-inline { vertical-align: middle; }</style>\n"
 
 # horrible
-CACHE_FILE = '/home/www/siom/web/latex.cache'
-TEMP_DIR = '/home/www/siom/web/latex_tmp'
+LATEX_PATH = '/home/www/siom/web/'
+CACHE_FILE = LATEX_PATH + 'latex.cache'
+TEMP_DIR = LATEX_PATH + 'latex_tmp'
 
 class LaTeXPreprocessor(markdown.preprocessors.Preprocessor):
     # These are our cached expressions that are stored in latex.cache

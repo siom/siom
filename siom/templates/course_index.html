@@ -3,15 +3,38 @@
 
 {% block content %}
 <br />
-Mokykla startuos spalio 26 dieną!<br />
+Užsiėmimai vyksta Matematikos ir Informatikos fakultete <a href="https://maps.google.com/maps?q=54.729701,25.263382&num=1&t=m&z=17">Didlaukio g. 47</a>
+<table style="border: 1px solid #000000;">
+	<tr>
+		<th colspan="2" style="text-align:center;">Tvarkaraštis</th>
+	</tr>
+	<tr>
+		<td>Spalio 26 d. 10 val.</td>
+		<td>Mokyklos atidarymas</td>
+	</tr>
+	<tr>
+		<td>Lapkričio 16 d. 10 val.</td>
+		<td>Pirma paskaita</td>
+	</tr>
+	<tr>
+		<td>Lapkričio 23 d. 10 val.</td>
+		<td>Antra paskaita</td>
+	</tr>
+	<tr>
+		<td>Gruodžio 7 d. 10 val.</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Gruodžio 21 d. 10 val.</td>
+		<td></td>
+	</tr>
+</table>
 {% for course in course_list %}
 	{% if forloop.first %}
 		<p>Aktyvūs kursai:</p>
 		<ul>
 	{% endif %}
-	{% if course.name != 'Test course' %}
 	<li><a href="{% url 'siom.views.course_home' course.code %}">{{ course.name }}</a></li>
-	{% endif %}
 	{% if forloop.last %}</ul>{% endif %}
 {% empty %}
 	<p>Šiuo metu nėra aktyvių kursų.</p>

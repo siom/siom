@@ -37,22 +37,22 @@ def results_table(context, tasks):
 
 @register.simple_tag(takes_context=True)
 def scoreboard_table(context, course):
-	submissions = Submission.objects.filter(user__courses=course)
+	tasks = Task.objects.filter(entries__courses=course)
+	submissions = Submission.objects.filter(user__courses=course, task__in=tasks)
 	submission_dict = {}
 	for sub in submissions:
 		if sub.verdict:
 			submission_dict.setdefault(sub.user_id, set()).add(sub.task_id)
 	scores = []
 	for user in course.users.all():
-		score = 0
 		score = len(submission_dict.get(user.id, {}))
 		scores.append({
 			'user': user,
 			'score': score
 		})
-	total = Task.objects.filter(entries__courses=course).count()
+	scores.sort(key=lambda score: score['score'], reverse=True)
 
 	return render_to_string('tags/scoreboard_table.html', {
 		'scores': scores,
-		'total': total,
+		'total': tasks.count(),
 	}, context)

@@ -20,7 +20,7 @@
 {% comment %}
 TODO: remove hardcoded link below
 {% endcomment %}
-{% if course.code = 'vid' %}
+{% if course.code == 'vid' %}
 <div class="menuitem"><a href="/m/t/knyga.pdf">Knyga</a></div>
 {% endif %}
 {% block login %}{{ block.super }}{% endblock %}

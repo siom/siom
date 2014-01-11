@@ -17,6 +17,12 @@
 	<div class="menuitem"><a href="{% url 'siom.views.submit' course.code %}">Pateikti sprendimą</a></div>
 {% endif %}
 <div class="menuitem"><a href="{% url 'siom.views.scoreboard' course.code %}">Rezultatai</a></div>
+{% comment %}
+TODO: remove hardcoded link below
+{% endcomment %}
+{% if course.code = 'vid' %}
+<div class="menuitem"><a href="/m/t/knyga.pdf">Knyga</a></div>
+{% endif %}
 {% block login %}{{ block.super }}{% endblock %}
 {% endblock %}
 

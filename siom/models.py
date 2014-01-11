@@ -28,6 +28,9 @@ class Course(models.Model):
 	def __unicode__(self):
 		return u'{0.name} ({0.code})'.format(self)
 
+	def tasks(self):
+		return Task.objects.filter(entries__courses=self)
+
 class Entry(models.Model):
 	owner = models.ForeignKey(User, limit_choices_to={'is_staff': True})
 	courses = models.ManyToManyField(Course, related_name='entries')

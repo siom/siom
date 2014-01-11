@@ -2,7 +2,7 @@
 {% extends "course_base.html" %}
 {% load stats %}
 
-{% block title %}{{ block.super }} &mdash; Rezultatai{% endblock %}
+{% block title %}{{ block.super }} &mdash; Užduotys{% endblock %}
 {% block content %}
-{% scoreboard_table course %}
+{% tasks course %}
 {% endblock %}

@@ -95,3 +95,15 @@ div.limits p {
 .nofloat {
 	clear: both;
 }
+
+.unsolved {
+    color: blue;
+}
+
+.tried {
+    color: red;
+}
+
+.solved {
+    color: green;
+}

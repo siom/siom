@@ -1,0 +1,7 @@
+{% for task_item in tasks %}
+    {% with task=task_item.task status=task_item.status %}
+    <div>
+        <a class="{{ status }}" href="{% url 'siom.views.task' course.code task.code %}">{{ task.title }}</a>
+    </div>
+    {% endwith %}
+{% endfor %}

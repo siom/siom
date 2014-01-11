@@ -23,6 +23,7 @@ TODO: remove hardcoded link below
 {% if course.code == 'vid' %}
 <div class="menuitem"><a href="/m/t/knyga.pdf">Knyga</a></div>
 {% endif %}
+<div class="menuitem"><a href="{% url 'siom.views.tasks' course.code %}">Užduotys</a></div>
 {% block login %}{{ block.super }}{% endblock %}
 {% endblock %}
 

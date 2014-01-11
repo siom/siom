@@ -37,8 +37,8 @@ def results_table(context, tasks):
 
 @register.simple_tag(takes_context=True)
 def scoreboard_table(context, course):
-	tasks = Task.objects.filter(entries__courses=course)
-	submissions = Submission.objects.filter(user__courses=course, task__in=tasks)
+	tasks = course.tasks()
+	submissions = Submission.objects.filter(task__in=tasks)
 	submission_dict = {}
 	for sub in submissions:
 		if sub.verdict:
@@ -57,3 +57,32 @@ def scoreboard_table(context, course):
 		'scores': scores,
 		'total': tasks.count(),
 	}, context)
+
+@register.inclusion_tag('tags/tasks.html', takes_context=True)
+def tasks(context, course):
+	tasks = course.tasks()
+	#TODO: sort by number of solved users?
+	user = context['user']
+	submissions = Submission.objects.filter(user=user, task__in=tasks)
+	solved = set()
+	tried = set()
+	for sub in submissions:
+		if sub.verdict:
+			solved.add(sub.task)
+		else:
+			tried.add(sub.task)
+
+	tasks = course.tasks()
+	tasks_list = []
+	for task in reversed(tasks):
+		status = 'solved' if task in solved else 'tried' if task in tried else 'unsolved'
+		print status
+		task_item = {
+			'task': task,
+			'status': status,
+		}
+		tasks_list.append(task_item)
+	return {
+		'course': course,
+		'tasks': tasks_list,
+	}

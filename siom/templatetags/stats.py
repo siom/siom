@@ -50,7 +50,7 @@ def scoreboard_table(context, course):
 			'user': user,
 			'score': score
 		})
-	scores.sort(key=lambda score: score['user'], reverse=True)
+	scores.sort(key=lambda score: score['user'].first_name + ' ' + score['user'].last_name)
 	scores.sort(key=lambda score: score['score'], reverse=True)
 
 	return render_to_string('tags/scoreboard_table.html', {

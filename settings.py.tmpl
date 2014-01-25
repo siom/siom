@@ -4,7 +4,7 @@ import os.path
 import djcelery
 djcelery.setup_loader()
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -64,7 +64,10 @@ MEDIA_URL = '/m/'
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/s/'
 
+GENERATED_DIR = os.path.join(os.path.dirname(__file__), 'generated')
+
 STATIC_ROOT = '/home/www/siom/static/'
+LATEX_PATH = os.path.join(GENERATED_DIR, 'latex')
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '4!$34@jcy1b4(+&5m@b@k(nk-cj$f*w$^9zdm3m77=sliquqv8'
@@ -135,14 +138,14 @@ BROKER_VHOST = "/"
 
 DJKOMBU_POLLING_INTERVAL = 1
 
-GRADER_BASE_DIR = ''
+GRADER_BASE_DIR = GENERATED_DIR
 GRADER_TASK_DIR = os.path.join(GRADER_BASE_DIR, 'tasks')
 GRADER_SYS_DIR = os.path.join(GRADER_BASE_DIR, 'sys')
 GRADER_RUN_DIR = os.path.join(GRADER_BASE_DIR, 'run')
 GRADER_COMPILE_ARGS = {
 	'pascal': 'fpc -Ci -g -O2 -Sg -o"{executable}" "{filename}"',
 	'c': 'gcc -std=gnu99 -O2 -g -o "{executable}" "{filename}" -lm -m32',
-	'cpp': 'g++ -O2 -g -o "{executable}" {filename}" -lm -m32',
+	'cpp': 'g++ -O2 -g -o "{executable}" "{filename}" -lm -m32',
 }
 GRADER_FILE_EXT = {
 	'pascal': 'pas',

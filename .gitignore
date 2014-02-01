@@ -1,3 +1,5 @@
 *.pyc
 settings.py
 latex.cache
+generated/
+.vagrant/

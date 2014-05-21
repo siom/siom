@@ -4,6 +4,7 @@ from django.conf.urls import *
 
 urlpatterns = patterns('siom.views',
 	(r'^$', 'course_index'),
+	(r'^register$', 'register'),
 	(r'^(\w+)/$', 'course_home'),
 	(r'^(\w+)/f/(\w+)\.html$', 'course_home'),
 	(r'^(\w+)/e/(\d+)\.html$', 'entry'),

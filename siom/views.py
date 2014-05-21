@@ -17,6 +17,20 @@ def course_index(request):
         {'course_list': course_list, 'my_course_list': my_course_list},
         RequestContext(request))
 
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return render_to_response('registration_complete.html', {
+                'user': user,
+            },RequestContext(request))
+    else:
+        form = RegistrationForm
+    return render_to_response('register.html',
+        {'form': form},
+        RequestContext(request))
+
 @course_view
 def course_home(request, course, type='home'):
     entries = course.entries.filter(type=type, publish__isnull=False, publish__lte=datetime.now()).order_by('-publish')
@@ -64,9 +78,9 @@ def submit(request, course):
 
 @course_view
 def scoreboard(request, course):
-	return render_to_response('scoreboard.html', {
-		'course': course,
-	}, RequestContext(request))
+    return render_to_response('scoreboard.html', {
+        'course': course,
+    }, RequestContext(request))
 
 @course_view
 def submission(request, course, id):

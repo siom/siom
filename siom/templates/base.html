@@ -24,6 +24,7 @@
 				<a href="{% block logouturl %}{% url 'django.contrib.auth.views.logout' %}?next={{ request.path }}{% endblock %}">Atsijungti</a>
 			{% else %}
 				<a href="{% block loginurl %}{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}{% endblock %}">Prisijungti</a>
+				<a href="{% block registerurl %}{% url 'siom.views.register' %}?next={{ request.path }}{% endblock %}">Registruotis</a>
 			{% endif %}
 		</div>{% endblock %}
 	{% endblock %}</div>

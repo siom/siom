@@ -17,16 +17,22 @@
 		<h1>Šeštadieninė informatikos olimpiadininkų mokykla</h1>
 	{% endblock %}</div>
 	<div id="menu">{% block menubar %}
-		{% block login %}<div class="menuitem">
+		{% block login %}
 			{% if user.is_authenticated %}
+			<div class="menuitem">
 				{{ user.first_name }} {{ user.last_name }}
 				{#<a href="#">Nustatymai</a>#}
 				<a href="{% block logouturl %}{% url 'django.contrib.auth.views.logout' %}?next={{ request.path }}{% endblock %}">Atsijungti</a>
+			</div>
 			{% else %}
+			<div class="menuitem">
 				<a href="{% block loginurl %}{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}{% endblock %}">Prisijungti</a>
+			</div>
+			<div class="menuitem">
 				<a href="{% block registerurl %}{% url 'siom.views.register' %}?next={{ request.path }}{% endblock %}">Registruotis</a>
+			</div>
 			{% endif %}
-		</div>{% endblock %}
+		{% endblock %}
 	{% endblock %}</div>
 	<div id="content">{% block content %}
 	{% endblock %}</div>

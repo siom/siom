@@ -1,0 +1,8 @@
+{# encoding: utf-8 #}
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+Jūs sėkmingai užregistruotas sistemoje, tačiau norėdami patekti į kursą, rašykite laišką <img src="/m/email.png" style="vertical-align:middle;" />.
+Laiške nurodykite savo vartotojo vardą ("{{ user.username }}") bei klasę.
+{% endblock %}

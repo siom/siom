@@ -55,3 +55,22 @@ class Submission(models.Model):
 	score = models.FloatField(null=True, blank=True)
 	message = models.TextField()
 	submitted = models.DateTimeField(auto_now_add=True)
+
+def get_solved(self):
+	submissions = Submission.objects.filter(user=self, verdict=True).values('task', 'verdict')
+	verdicts = {}
+	for s in submissions:
+		task = s['task']
+		verdict = s['verdict']
+		if task not in verdicts or not verdicts[task]:
+			verdicts[task] = verdict
+	solved = set()
+	tried = set()
+	for id, verdict in verdicts.iteritems():
+		if verdict:
+			solved.add(id)
+		else:
+			tried.add(id)
+	return solved, tried
+
+User.add_to_class('solved_tasks', get_solved)

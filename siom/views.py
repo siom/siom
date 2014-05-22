@@ -34,16 +34,29 @@ def register(request):
 @course_view
 def course_home(request, course, type='home'):
     entries = course.entries.filter(type=type, publish__isnull=False, publish__lte=datetime.now()).order_by('-publish')
+    solved, tried = request.user.solved_tasks()
     return render_to_response('course.html',
-        {'course': course, 'entries': entries },
+        {
+            'course': course,
+            'entries': entries,
+            'solved': solved,
+            'tried': tried,
+        },
         RequestContext(request))
 
 @course_view
 def entry(request, course, id):
     entry = get_object_or_404(Entry, pk=int(id), courses=course, publish__isnull=False)
     submissions = list(Submission.objects.filter(task__entries=entry, user__courses=course))
+    solved, tried = request.user.solved_tasks()
     return render_to_response('entry.html',
-        {'course': course, 'entry': entry, 'submissions': submissions},
+        {
+            'course': course,
+            'entry': entry,
+            'submissions': submissions,
+            'solved': solved,
+            'tried': tried,
+        },
         RequestContext(request))
 
 @course_view

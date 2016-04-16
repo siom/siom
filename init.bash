@@ -14,17 +14,18 @@ mkdir Build
 sudo apt-get -y install apache2 apache2-dev
 
 ## latex
-sudo apt-get -y install texlive
+sudo apt-get -y install texlive dvipng
 
 ## python
 sudo apt-get -y install python python-dev python-pip
+sudo pip install distribute==0.7.3
 sudo pip install -r /vagrant/requirements.txt
 
 ## mysql
 sudo debconf-set-selections <<< "mysql-server-14 mysql-server/root_password password ${MYSQL_PASS}"
 sudo debconf-set-selections <<< "mysql-server-14 mysql-server/root_password_again password ${MYSQL_PASS}"
 sudo apt-get -y install mysql-server
-mysql --user=root "--password=${MYSQL_PASS}" <<< "create database siom"
+mysql --user=root "--password=${MYSQL_PASS}" <<< "create database siom character set utf8"
 mysql --user=root "--password=${MYSQL_PASS}" <<< "create user 'siom'@'localhost' identified by 'neisvengiama'"
 mysql --user=root "--password=${MYSQL_PASS}" <<< "use siom; grant all privileges on siom.* to 'siom'@'%' identified by 'neisvengiama' with grant option"
 sudo apt-get -y install libapache2-mod-auth-mysql
@@ -34,6 +35,8 @@ mkdir -p "${GENERATED_DIR}/tasks"
 mkdir -p "${GENERATED_DIR}/sys"
 mkdir -p "${GENERATED_DIR}/run"
 mkdir -p "${GENERATED_DIR}/latex"
+
+mkdir -p /home/vagrant/web/latex_tmp
 
 # comile box
 sudo updatedb
@@ -46,6 +49,7 @@ sed -i'' -e 's/"box\/syscall-table.h"/"syscall-table.h"/' box.c
 make o=../ s=../ 'CC=gcc -std=c99'
 cp box "${GENERATED_DIR}/sys/"
 cp /vagrant/grader/checker.py "${GENERATED_DIR}/sys"
+chmod a+x "${GENERATED_DIR}/sys/checker.py"
 cd
 
 # initialize database

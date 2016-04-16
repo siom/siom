@@ -14,10 +14,11 @@ mkdir Build
 sudo apt-get -y install apache2 apache2-dev
 
 ## latex
-sudo apt-get -y install texlive
+sudo apt-get -y install texlive dvipng
 
 ## python
 sudo apt-get -y install python python-dev python-pip
+sudo pip install distribute==0.7.3
 sudo pip install -r /vagrant/requirements.txt
 
 ## mysql
@@ -35,6 +36,8 @@ mkdir -p "${GENERATED_DIR}/sys"
 mkdir -p "${GENERATED_DIR}/run"
 mkdir -p "${GENERATED_DIR}/latex"
 
+mkdir -p /home/vagrant/web/latex_tmp
+
 # comile box
 sudo updatedb
 mkdir -p /tmp/box
@@ -46,6 +49,7 @@ sed -i'' -e 's/"box\/syscall-table.h"/"syscall-table.h"/' box.c
 make o=../ s=../ 'CC=gcc -std=c99'
 cp box "${GENERATED_DIR}/sys/"
 cp /vagrant/grader/checker.py "${GENERATED_DIR}/sys"
+chmod a+x "${GENERATED_DIR}/sys/checker.py"
 cd
 
 # initialize database

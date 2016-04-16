@@ -24,7 +24,7 @@ sudo pip install -r /vagrant/requirements.txt
 sudo debconf-set-selections <<< "mysql-server-14 mysql-server/root_password password ${MYSQL_PASS}"
 sudo debconf-set-selections <<< "mysql-server-14 mysql-server/root_password_again password ${MYSQL_PASS}"
 sudo apt-get -y install mysql-server
-mysql --user=root "--password=${MYSQL_PASS}" <<< "create database siom"
+mysql --user=root "--password=${MYSQL_PASS}" <<< "create database siom character set utf8"
 mysql --user=root "--password=${MYSQL_PASS}" <<< "create user 'siom'@'localhost' identified by 'neisvengiama'"
 mysql --user=root "--password=${MYSQL_PASS}" <<< "use siom; grant all privileges on siom.* to 'siom'@'%' identified by 'neisvengiama' with grant option"
 sudo apt-get -y install libapache2-mod-auth-mysql

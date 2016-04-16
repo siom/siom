@@ -44,7 +44,7 @@ IMG_EXPR = "<img class='latex-inline math-%s' alt='%s' id='%s'" + \
 IMG_CSS = "<style>img.latex-inline { vertical-align: middle; }</style>\n"
 
 # horrible
-LATEX_PATH = '/home/www/siom/web/'
+LATEX_PATH = '/home/vagrant/web/'
 CACHE_FILE = LATEX_PATH + 'latex.cache'
 TEMP_DIR = LATEX_PATH + 'latex_tmp'
 

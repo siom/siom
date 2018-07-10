@@ -1,0 +1,38 @@
+{# encoding: utf-8 #}
+{% extends "base.html" %}
+{% load mptt_tags %}
+
+{% block content %}
+
+<h3>
+{% for dir in directory.get_ancestors %}
+	<a href="{% url 'archive' dir.pk %}">{{ dir.name }}</a> >
+{% endfor %}
+<a href="{% url 'archive' directory.pk %}">{{ directory.name }}</a>
+</h3>
+
+{% with directory.get_children as children %}
+	{% if children %}
+
+	<h3>Direktorijos</h3>
+	<ul>
+	{% for child in children %}
+		<li><a href="{% url 'archive' child.pk %}">{{ child.name }}</a></li>
+	{% endfor %}
+	</ul>
+
+	{% endif %}
+{% endwith %}
+
+{% with tasks.all as all_tasks %}
+	{% if all_tasks %}
+		<h3>Užduotys</h3>
+		<ul>
+		{% for task in all_tasks %}
+			<li><a href="{% url 'task' task.code %}">{{ task.title }}</a></li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+{% endwith %}
+
+{% endblock %}

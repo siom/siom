@@ -1,15 +1,18 @@
 {# encoding: utf-8 #}
 
-{% extends "course_base.html" %}
+{% extends "base.html" %}
 
 {% load siomext stylize %}
 
 {% block title %}ŠIOM &mdash; submission {{ submission.id }}{% endblock %}
 
 {% block content %}
+
+<h3><a href="{% url 'task' submission.task.code %}">{{ submission.task.title }}</a></h3>
+
 <ul class="submissions">
 	{% for sub in all_submissions %}<li>
-		<a href="{% url 'siom.views.submission' course.code sub.id %}"{% if sub == submission %} class="active"{% endif %}>
+		<a href="{% url 'submission' sub.id %}"{% if sub == submission %} class="active"{% endif %}>
 			[{{ forloop.counter }}]
 			{{ sub.submitted|date:"Y-m-d H:i" }}</a>
 		({{ sub.score|multiply:100|floatformat|default:"?" }})

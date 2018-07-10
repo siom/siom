@@ -11,17 +11,30 @@
 </head>
 
 <body>
-	<div id="header">	{% block header %}
-		<a href="{% block logourl %}{% url 'siom.views.course_index' %}{% endblock %}">
-		<img class="logo" src="{{ MEDIA_URL }}vilkas.png" width="133px" height="100px" /></a>
-		<h1>Šeštadieninė informatikos olimpiadininkų mokykla</h1>
-	{% endblock %}</div>
-	<div id="menu">{% block menubar %}
-		{% block login %}
+	<div id="header">
+		{% block header %}
+			<a href="{% block logourl %}{% url 'course_index' %}{% endblock %}">
+			<img class="logo" src="{{ MEDIA_URL }}vilkas.png" width="133px" height="100px" /></a>
+			<h1>Šeštadieninė informatikos olimpiadininkų mokykla</h1>
+		{% endblock %}
+	</div>
+
+	<div id="menu">
+		{% block menubar %}
+			<div class="menuitem">
+				<a href="{% url 'index' %}">Pradžia</a>
+			</div>
+			<div class="menuitem">
+				<a href="{% url 'course_index' %}">Kursai</a>
+			</div>
+			<div class="menuitem">
+				<a href="{% url 'archive' 1 %}">Archyvas</a>
+			</div>
+			{% block menuextra %} {% endblock %}
+
 			{% if user.is_authenticated %}
 			<div class="menuitem">
 				{{ user.first_name }} {{ user.last_name }}
-				{#<a href="#">Nustatymai</a>#}
 				<a href="{% block logouturl %}{% url 'django.contrib.auth.views.logout' %}?next={{ request.path }}{% endblock %}">Atsijungti</a>
 			</div>
 			{% else %}
@@ -29,12 +42,15 @@
 				<a href="{% block loginurl %}{% url 'django.contrib.auth.views.login' %}?next={{ request.path }}{% endblock %}">Prisijungti</a>
 			</div>
 			<div class="menuitem">
-				<a href="{% block registerurl %}{% url 'siom.views.register' %}?next={{ request.path }}{% endblock %}">Registruotis</a>
+				<a href="{% block registerurl %}{% url 'register' %}?next={{ request.path }}{% endblock %}">Registruotis</a>
 			</div>
 			{% endif %}
 		{% endblock %}
-	{% endblock %}</div>
-	<div id="content">{% block content %}
-	{% endblock %}</div>
+	</div>
+	<div id="content">
+		{% block content %}
+		{% endblock %}
+	</div>
+
 </body>
 </html>

@@ -8,15 +8,8 @@ from django.conf.urls import *
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Example:
-    # (r'^d/', include('d.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    (r'^a/', include(admin.site.urls)),
-    (r'^m/(?P<path>.*)$', django.views.static.serve, { 'document_root': settings.MEDIA_ROOT }),
-    (r'', include('siom.urls')),
-)
+urlpatterns = [
+    url(r'^a/', include(admin.site.urls)),
+    url(r'^m/(?P<path>.*)$', django.views.static.serve, { 'document_root': settings.MEDIA_ROOT }),
+    url(r'', include('siom.urls')),
+]

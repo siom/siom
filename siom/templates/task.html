@@ -1,17 +1,44 @@
 {# encoding: utf-8 #}
-{% extends "course_base.html" %}
-{% load markup siomext %}
+{% extends "base.html" %}
+{% load django_markdown siomext %}
 
 {% block title %}{{ block.super }} &mdash; {{ task.title }}{% endblock %}
 
 {% block content %}
+
 <div class="limits">
 	<p>Laiko ribojimas: {{ task.time_limit_ms|multiply:0.001|floatformat }}s</p>
 	<p>Atminties ribojimas: {{ task.memory_limit_mb }}MB</p>
 	{% if task.input %}<p>Duomenų failas: {{ task.input }}</p>{% endif %}
 	{% if task.output %}<p>Rezultatų failas: {{ task.output }}</p>{% endif %}
+
+	<form enctype="multipart/form-data" method="post" action="{% url 'submit' task.pk %}">
+	{% csrf_token %}
+	<table class="submit">
+	{{ form }}
+	<tr><td colspan="2">
+
+	{% if user.is_authenticated %}
+		<input type="submit">
+		{% if last_submission %}
+			<p><a href="{% url 'submission' last_submission.pk %}">Mano pateikimai</a></p>
+		{% else %}
+			<p>Jūs dar nepateikėte nei vieno sprendimo</p>
+		{% endif %}
+	{% else %}
+		<input type="submit" disabled>
+		<p>Jei norite pateikti savo sprendimą - prisijunkite.</p>
+	{% endif %}
+
+	</td></tr>
+	</table>
+	</form>
 </div>
+
+<div>
+
 <h2>{{ task.title }}</h2>
 <div class="nofloat"></div>
 <div class="markdown">{{ task.text|markdown:"simpletables,latex" }}</div>
+
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block title %}{{ block.super }} &mdash; submit{% endblock %}
 
 {% block content %}
-<form enctype="multipart/form-data" method="post" action="{% url 'siom.views.submit' course.code %}">
+<form enctype="multipart/form-data" method="post" action="{% url 'submit' course.code %}">
 {% csrf_token %}
 <table class="submit">
 {{ form }}

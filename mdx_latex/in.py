@@ -1,9 +1,12 @@
 """
 Copyright (c) 2011 Justin Bruce Van Horne
+
 Python-Markdown LaTeX Extension
 ===============================
+
 Adds support for $math mode$ and %text mode%. This plugin supports
 multiline equations/text.
+
 The actual image generation is done via LaTeX/DVI output.
 It encodes data as base64 so there is no need for images directly.
 All the work is done in the preprocessor.
@@ -204,7 +207,6 @@ class MarkdownLatex(markdown.Extension):
                 LaTeXPostprocessor(self), ">amp_substitute")
 
 
-def makeExtension(configs=None):
+def makeExtension(configs={}):
     """Wrapper for a MarkDown extension"""
     return MarkdownLatex(configs=configs)
-

@@ -2,4 +2,6 @@
 settings.py
 latex.cache
 generated/
+latex_tmp/
+django.log
 .vagrant/

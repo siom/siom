@@ -92,6 +92,12 @@ div.limits p {
 	margin: 0;
 }
 
+div.limits label {
+	font-style: italic;
+	font-size: small;
+	margin: 0;
+}
+
 .nofloat {
 	clear: both;
 }

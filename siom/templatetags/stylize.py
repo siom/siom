@@ -1,4 +1,4 @@
-from django.template import Library, Node, resolve_variable
+from django.template import Library, Node, Variable
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
@@ -13,7 +13,7 @@ class StylizeNode(Node):
 	def render(self, context):
 		style = 'text'
 		if len(self.vlist) > 0:
-			style = resolve_variable(self.vlist[0], context)
+			style = Variable(self.vlist[0]).resolve(context)
 		return highlight(self.nodelist.render(context),
 				get_lexer_by_name(style, encoding='UTF-8'), HtmlFormatter())
 

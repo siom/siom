@@ -32,8 +32,7 @@ def results_table(context, tasks):
 		submission_table.append((user, row))
 	#TODO: maybe sort rows by smth
 	return render_to_string('tags/results_table.html',
-		{'tasks': tasks, 'submissions': submission_table},
-		context)
+		{'course': course, 'tasks': tasks, 'submissions': submission_table})
 
 @register.simple_tag(takes_context=True)
 def scoreboard_table(context, course):
@@ -56,4 +55,4 @@ def scoreboard_table(context, course):
 	return render_to_string('tags/scoreboard_table.html', {
 		'scores': scores,
 		'total': tasks.count(),
-	}, context)
+	})

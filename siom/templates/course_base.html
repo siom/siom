@@ -3,26 +3,20 @@
 
 {% block title %}{{ block.super }} &mdash; {{ course.name }}{% endblock %}
 
-{% block logourl %}{% url 'siom.views.course_home' course.code %}{% endblock %}
-{% block loginurl %}{% url 'siom.views.course_login' course.code %}?next={{ request.path }}{% endblock %}
-{% block logouturl %}{% if not course.open %}{% url 'siom.views.course_index' %}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block logouturl %}{% if not course.open %}{% url 'course_index' %}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block header %}
 {{ block.super }}
 <h2>{{ course.name }}</h2>
 {% endblock %}
 
-{% block menubar %}
-<div class="menuitem"><a href="{% url 'siom.views.course_home' course.code %}">Pradžia</a></div>
-{% if user.in_course %}
-	<div class="menuitem"><a href="{% url 'siom.views.submit' course.code %}">Pateikti sprendimą</a></div>
-{% endif %}
-<div class="menuitem"><a href="{% url 'siom.views.scoreboard' course.code %}">Rezultatai</a></div>
-{% comment %}
-TODO: remove hardcoded link below
-{% endcomment %}
-{% if course.code == 'vid' %}
-<div class="menuitem"><a href="/m/t/knyga.pdf">Knyga</a></div>
-{% endif %}
-{% block login %}{{ block.super }}{% endblock %}
+{% block menuextra %}
+	<div class="menuitem"><a href="{% url 'scoreboard' course.code %}">Rezultatai</a></div>
+
+	{% comment %}
+	TODO: remove hardcoded link below
+	{% endcomment %}
+	{% if course.code == 'vid' %}
+		<div class="menuitem"><a href="/m/t/knyga.pdf">Knyga</a></div>
+	{% endif %}
 {% endblock %}
 

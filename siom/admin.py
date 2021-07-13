@@ -32,6 +32,6 @@ class SubmissionAdmin(admin.ModelAdmin):
 
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Course, filter_horizontal=('users',))
-admin.site.register(Entry)
+admin.site.register(Entry, filter_horizontal=('tasks',))
 admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Directory, DraggableMPTTAdmin)

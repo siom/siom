@@ -6,6 +6,10 @@
 
 {% block content %}
 
+<link href="{{ MEDIA_URL }}pdf_support.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{ MEDIA_URL }}pdf.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}pdf_support.js"></script>
+
 <div class="limits">
 	<p>Laiko ribojimas: {{ task.time_limit_ms|multiply:0.001|floatformat }}s</p>
 	<p>Atminties ribojimas: {{ task.memory_limit_mb }}MB</p>

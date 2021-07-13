@@ -9,7 +9,17 @@
 	<a href="{% url 'archive' dir.pk %}">{{ dir.name }}</a> >
 {% endfor %}
 <a href="{% url 'archive' directory.pk %}">{{ directory.name }}</a>
+
 </h3>
+
+<p>
+<b>Pastaba.</b> Archyvas kol kas dar nėra pilnai baigtas. Pavyzdžiui, gali būti problemų su uždaviniais, kuriuose atsakymas nėra vienareikšmis.
+Jei susidursite su problemomis, užregistruokite tai (tik prieš tai patikrinkite jau užregistruotų klaidų sąrašą, kad išvengtume pasikartojimų).
+</p>
+<ul>
+<li>Užregistruotų klaidų sąrašas: <a href="https://bit.ly/2kyPc0l" target="_blank">https://bit.ly/2kyPc0l</a></li>
+<li>Klaidų registravimo forma: <a href="https://bit.ly/2lO2ENY" target="_blank">https://bit.ly/2lO2ENY</a></li>
+</ul>
 
 {% with directory.get_children as children %}
 	{% if children %}

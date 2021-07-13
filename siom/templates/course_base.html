@@ -15,7 +15,7 @@
 	{% comment %}
 	TODO: remove hardcoded link below
 	{% endcomment %}
-	{% if course.code == 'vid' %}
+	{% if course.code|slice:":3" == 'vid' %}
 		<div class="menuitem"><a href="/m/t/knyga.pdf">Knyga</a></div>
 	{% endif %}
 {% endblock %}

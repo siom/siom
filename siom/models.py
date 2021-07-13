@@ -71,6 +71,9 @@ class Submission(models.Model):
     message = models.TextField()
     submitted = models.DateTimeField(auto_now_add=True)
 
+    def __unicode__(self):
+        return u'{0.user} ({0.task})'.format(self)
+
 def get_solved(self):
     submissions = Submission.objects.filter(user=self, verdict=True).values('task', 'verdict')
     verdicts = {}

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+
+    volumes:
+      - ..:/workspace:cached  
+    init: true
+    privileged: true
+    depends_on:
+      - db
+      - rabbitmq
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Uncomment the next line to use a non-root user for all processes.
+    # user: vscode
+
+  db:
+    image: mysql:5.7.33
+    restart: unless-stopped
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    # expose:
+    #   - '3306'
+    environment:
+      MYSQL_USER: siom
+      MYSQL_DATABASE: siom
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+  rabbitmq:
+    image: rabbitmq:3.6.15-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbit
+      - RABBITMQ_DEFAULT_PASS=rabbit
+
+volumes:
+  mysql-data:

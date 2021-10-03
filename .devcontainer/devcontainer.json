@@ -12,13 +12,14 @@
 	"workspaceFolder": "/workspace",
 
 	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+	"settings": {
+		"python.defaultInterpreterPath": "/home/vscode/.pyenv/versions/2.7.12/envs/siom_venv/bin/python"
+	},
 
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-python.python",
-		"ms-azuretools.vscode-docker"
+		"ms-python.python"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -29,7 +30,7 @@
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postStartCommand": ".devcontainer/scripts/postStart.sh",
+	"postStartCommand": ".devcontainer/scripts/post_start.sh",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"

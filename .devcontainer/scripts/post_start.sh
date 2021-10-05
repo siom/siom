@@ -16,3 +16,5 @@ nohup python manage.py celery worker -l info -c 1 </dev/null &> /home/www/siom/l
 
 echo "Starting web server"
 nohup python manage.py runserver </dev/null &> /home/www/siom/logs/server.txt &
+
+sleep 5

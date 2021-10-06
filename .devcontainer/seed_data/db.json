@@ -1,0 +1,123 @@
+[
+{
+    "model": "siom.task",
+    "pk": 1,
+    "fields": {
+        "code": "pomidorai_jau",
+        "title": "Pomidorai",
+        "time_limit_ms": 500,
+        "memory_limit_mb": 16,
+        "input": "",
+        "output": "",
+        "text": "\u017dinomas \u012fdomus faktas: tarp neprinokusi\u0173 pomidor\u0173 pad\u0117jus kelet\u0105 raudon\u0173 pomidor\u0173, aplink juos esantys \u017eali pomidorai ims nokti grei\u010diau.\r\n\r\nVienoje eil\u0117je sud\u0117ta $n$ pomidor\u0173. Laikykime, kad jie sunumeruoti nuo 1 iki $n$. Vienas \u0161i\u0173 pomidor\u0173 yra raudonas. Jo numeris yra $m$. Per pirm\u0105j\u0105 dien\u0105 prinoksta abu \u0161io pomidoro kaimynai. Per kiekvien\u0105 tolesn\u0119 dien\u0105 prinoksta abu kiekvieno raudono pomidoro kaimynai (suprantama, jei jie dar neprinok\u0119). Nepamir\u0161kite, kad kra\u0161tinis pomidoras turi tik vien\u0105 kaimyn\u0105.\r\n\r\n\u0160tai pavyzdys, kaip noksta pomidorai b\u0117gant dienoms. Pirmoje eil\u0117je parodyta pradin\u0117 b\u016bsena (prinok\u0119s tik ketvirtas pomidoras). Kitose eil\u0117se - b\u016bsena po vienos ir po dviej\u0173 dien\u0173 atitinkamai.\r\n\r\n![Pomidor\u0173 augimas](/m/t/pomidorai_jau.jpg)\r\n\r\nJ\u016bs\u0173 u\u017eduotis - para\u0161yti program\u0105, kuri suskai\u010diuot\u0173, kiek dar liks neprinokusi\u0173 pomidor\u0173 po $d$ dien\u0173.\r\n\r\n###Pradiniai duomenys\r\nPirmoje ir vienintel\u0117je eilut\u0117je \u012fvesti trys tarpu atskirti sveikieji skai\u010diai $n$, $m$ ir $d$ - atitinkamai pomidor\u0173 skai\u010dius, prinokusio pomidoro numeris ir dien\u0173 skai\u010dius ($2 \\leq n \\leq 70, 1 \\leq m \\leq n, 1 \\leq d \\leq 30$).\r\n\r\n###Rezultatai\r\nPrograma turi i\u0161vesti vien\u0105 sveik\u0105j\u012f skai\u010di\u0173 - kiek pomidor\u0173 liks neprinok\u0119 po $d$ dien\u0173.\r\n\r\n###Pavyzd\u017eiai\r\n|*Pradiniai duomenys*|*Rezultatai*|\r\n|#9 4 2#|#4#|\u0160is testas atitinka paveiksl\u0117lyje pavaizduot\u0105 atvej\u012f.|\r\n|#5 3 1#|#2#|\r\n|#2 2 1#|#0#|",
+        "created": "2021-09-28T22:32:45.671",
+        "modified": "2021-09-30T23:51:36.364"
+    }
+},
+{
+    "model": "siom.directory",
+    "pk": 1,
+    "fields": {
+        "name": "Archyvas",
+        "parent": null,
+        "lft": 1,
+        "rght": 4,
+        "tree_id": 1,
+        "level": 0,
+        "tasks": []
+    }
+},
+{
+    "model": "siom.directory",
+    "pk": 2,
+    "fields": {
+        "name": "eJOI",
+        "parent": 1,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 1,
+        "level": 1,
+        "tasks": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$Kjvlvy2W0Q9N$AUiH0JFsC+MKi9yho+S/6KISbSQgBaf0mTStjP1naSE=",
+        "last_login": "2021-10-02T16:51:40.950",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Adminas",
+        "last_name": "Adminauskas",
+        "email": "admin@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-28T22:31:28",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$36000$usGxkEwUmD73$o8jglOAzNBNmJSqpmN8u+oyBGWAcntsvbC+YkQLD6Ew=",
+        "last_login": "2021-10-02T16:52:28.261",
+        "is_superuser": false,
+        "username": "student",
+        "first_name": "Mokinys",
+        "last_name": "Mokinauskas",
+        "email": "mokinys@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-10-02T16:51:10.800",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "siom.submission",
+    "pk": 88,
+    "fields": {
+        "task": 1,
+        "user": 1,
+        "code": "#include <iostream>\r\nusing namespace std;\r\n\r\nint main(){\r\n    int n, m, d;\r\n    cin >> n >> m >> d;\r\n    int left = m - d;\r\n    int right = m + d;\r\n    if(left < 1) left = 1;\r\n    if(right > n) right = n;\r\n    int ripe = right-left+1;\r\n    cout << n - ripe << endl;\r\n    return 0;\r\n}",
+        "language": "cpp",
+        "verdict": true,
+        "score": 1.0,
+        "message": "<p>Compile: OK</p>\n<p></p>\n<table>\n<thead><tr><th>nr.</th><th>result</th><th>time</th><th>message</th></tr></thead>\n<tbody>\n\n<tr><td>1</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>2</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>3</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>4</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>5</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>6</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>7</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>8</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>9</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>10</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>11</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>12</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>13</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>14</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>15</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>16</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>17</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>18</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>19</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>20</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>21</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>22</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>23</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>24</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>25</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>26</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>27</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>28</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>29</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>30</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>31</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>32</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>33</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>34</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>35</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>36</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>37</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>38</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>39</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>40</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>41</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>42</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>43</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>44</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>45</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>46</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>47</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>48</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>49</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n<tr><td>50</td><td>True</td><td>0.0 s</td><td>ok\n</td></tr>\n\n</tbody>\n</table>\n",
+        "submitted": "2021-10-03T11:17:21.447"
+    }
+},
+{
+    "model": "siom.entry",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "type": "home",
+        "title": "Pirmas uzsiemimas",
+        "text": "Siandien spresim labai sunkius uzdavinius",
+        "created": "2021-09-28T22:33:21.453",
+        "modified": "2021-09-28T22:33:21.453",
+        "publish": "2021-09-28T22:30:00",
+        "courses": [
+            1
+        ],
+        "tasks": [
+            1
+        ]
+    }
+},
+{
+    "model": "siom.course",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "name": "Vidurinioji 2030",
+        "code": "vid2030",
+        "open": true,
+        "users": []
+    }
+}
+]

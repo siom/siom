@@ -5,3 +5,4 @@ generated/
 latex_tmp/
 django.log
 .vagrant/
+.vscode/

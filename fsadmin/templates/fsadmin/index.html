@@ -1,0 +1,11 @@
+{% extends "fsadmin/base.html" %}
+
+{% block fsadmin_breadcrumbs %}
+  &rsaquo; List
+{% endblock %}
+
+{% block fsadmin_content %}
+  <ul class="fsadmin-list {% if is_popup %}popup{% endif %}">
+    {{ results|safe }}
+  </ul>
+{% endblock %}

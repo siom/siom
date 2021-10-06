@@ -1,0 +1,55 @@
+@charset "UTF-8";
+ul.fsadmin-list {
+  max-width: 800px; }
+  ul.fsadmin-list,
+  ul.fsadmin-list ul {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0; }
+  ul.fsadmin-list li {
+    padding: 0; }
+  ul.fsadmin-list ul {
+    padding-left: 20px; }
+  ul.fsadmin-list .delete,
+  ul.fsadmin-list .rename {
+    float: right;
+    visibility: hidden;
+    margin-right: 5px;
+    margin-left: 15px; }
+  ul.fsadmin-list .rename {
+    color: #000; }
+  ul.fsadmin-list .delete {
+    color: #f00; }
+    ul.fsadmin-list .delete:hover {
+      color: #cc0000; }
+  ul.fsadmin-list .item-wrap {
+    padding: 5px; }
+  ul.fsadmin-list .item-wrap:hover {
+    background: #fafafa; }
+    ul.fsadmin-list .item-wrap:hover .delete,
+    ul.fsadmin-list .item-wrap:hover .rename {
+      visibility: visible; }
+  ul.fsadmin-list .directory > .item-wrap a.item::before {
+    display: inline-block;
+    width: 20px; }
+  ul.fsadmin-list .directory > .item-wrap a.item::before {
+    content: '▶︎'; }
+  ul.fsadmin-list .directory.active > .item-wrap a.item::before {
+    content: '▼'; }
+  ul.fsadmin-list li {
+    list-style: none;
+    margin: 0;
+    border-top: 1px solid #e5e5e5; }
+    ul.fsadmin-list li.extras {
+      padding: 5px 0; }
+      ul.fsadmin-list li.extras a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #aaa; }
+        ul.fsadmin-list li.extras a:hover {
+          color: #919191; }
+  ul.fsadmin-list.popup .delete,
+  ul.fsadmin-list.popup .rename {
+    display: none; }
+
+/*# sourceMappingURL=fsadmin.css.map */

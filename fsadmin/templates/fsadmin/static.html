@@ -1,0 +1,9 @@
+{% load static %}
+
+<script type="text/javascript">
+  window.fsadmin = {
+    TINYMCE_DIALOG_URL: '{% url "admin:fsadmin_{{ identifier }}_changelist" %}?_popup=1'
+  };
+</script>
+<script type="text/javascript" src="{% static 'fsadmin/fsadmin.js' %}">
+</script>

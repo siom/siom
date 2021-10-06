@@ -1,0 +1,15 @@
+{% extends "fsadmin/base.html" %}
+
+{% block fsadmin_breadcrumbs %}
+  &rsaquo; Rename
+{% endblock %}
+
+{% block fsadmin_content %}
+  <form action="{% url post_url %}?path={{ path }}"
+        method="POST">
+    {% csrf_token %}
+    <p>Old name: {{ old_name }}</p>
+    {{ form.as_p }}
+    <input type="submit" value="Rename">
+  </form>
+{% endblock %}

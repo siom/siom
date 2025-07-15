@@ -8,7 +8,7 @@ Norint dirbti su sistema lokaliai, galima tą daryti pasileidus ją Docker konte
 
 * Atsidaryti šios repozitorijos direktoriją (`File -> Open Folder...`)
 * Įsirašyti [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) papildinį
-* Paleisti komandą `Remote-Containers: Rebuild and Reopen in Container`
+* Paleisti komandą `Dev Containers: Rebuild and Reopen in Container`
 * Atsidaryti `http://localhost:8000` naršyklėje
 
 ### Pavyzdinių duomenų sukūrimas
@@ -27,7 +27,7 @@ Taip visa dabartinė duomenų bazės būsena bus išsaugota faile `db.json` ir k
 
 Jei norite visiškai išvalyti lokalioje duomenų bazėje esančius duomenis, atlikite šiuos veiksmus:
 
-* Atsidarykite repozitoriją lokaliai, o ne konteinerio viduje (`Remote-Containers: Reopen Folder Locally`)
+* Atsidarykite repozitoriją lokaliai, o ne konteinerio viduje (`Dev Containers: Reopen Folder Locally`)
 * Palaukite kelias sekundes, kad konteineriai galėtų pabaigti darbą
 * Ištrinkite konteinerius ir *volume*, kuriame yra duomenų bazės failai:
   ```

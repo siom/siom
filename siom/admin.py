@@ -18,6 +18,7 @@ class TaskAdmin(admin.ModelAdmin):
             'classes': ['collapse'],
         }),
     ]
+    search_fields = ['code', 'title']
 
 class SubmissionAdmin(admin.ModelAdmin):
     list_display = ('task', 'user', 'language', 'verdict', 'score', 'submitted')

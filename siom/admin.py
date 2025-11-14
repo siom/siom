@@ -4,6 +4,7 @@ from django.contrib import admin
 from siom.models import *
 from grader.tasks import GradeTask
 from mptt.admin import DraggableMPTTAdmin
+from django.utils.safestring import mark_safe
 
 class TaskAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -19,6 +20,10 @@ class TaskAdmin(admin.ModelAdmin):
         }),
     ]
     search_fields = ['code', 'title']
+    readonly_fields = ['link']
+
+    def link(self, instance):
+        return mark_safe('<a href="https://siom.lmio.lt/task/' + instance.code + '.html" target="_blank">Atidaryti sistemoje</a>')
 
 class SubmissionAdmin(admin.ModelAdmin):
     list_display = ('task', 'user', 'language', 'verdict', 'score', 'submitted')

@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 class TaskAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
-            'fields': ['code', 'title', 'text'],
+            'fields': ['code', 'title', 'text', 'link'],
         }),
         ('Limits', {
             'fields': ['time_limit_ms', 'memory_limit_mb'],

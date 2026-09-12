@@ -2,7 +2,7 @@ amqp==1.4.9
 anyjson==0.3.3
 billiard==3.3.0.23
 celery==3.1.25
-Django==1.11.4
+Django==2.2.28
 django-celery==3.2.1
 django-jquery==3.1.0
 django-markdown==0.8.4
